@@ -1,0 +1,20 @@
+html, body {
+	margin: 0;
+} 
+
+#frame {
+    width: 399px;
+    height: 510px;
+    border: 1px solid black;
+}
+
+#inner {
+    width: 100%;
+    padding-top: 150px;
+    text-align: center;
+    font-size: 20px;
+}
+
+p#time {
+    font-size: 60px;
+}
