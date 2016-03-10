@@ -2,18 +2,21 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Kobo</title>
+    <title>Info Site</title>
     <link rel="stylesheet" href="style.css" />
+    <?php require 'fetch_data.php' ?>
 </head>
 <body>
 
     <div id="frame">
-        <div id="inner">
-            <?php
-            setlocale(LC_TIME, "de_DE.utf8");
-            echo strftime("%A, %d. %B %Y", time());
-            ?>
+        <div id="datetime">
+            <p class="date"><?=$dateFormatted?></p>
             <p id="time"></p>
+        </div>
+        <div id="weather">
+            <p class="weather-desc"><?=$weatherData->{'weather'}[0]->{'description'}?></p>
+            <div class="weather-icon icon-<?=$weatherData->{'weather'}[0]->{'icon'}?>"></div>
+            <p><span class="temperature"><?=intval($weatherData->{'main'}->{'temp'})?></span> <span class="unit">°C</span></p>
         </div>
     </div>
 
