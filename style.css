@@ -1,3 +1,4 @@
+/* generic */
 html, body {
 	margin: 0;
     font-size: 20px;
@@ -9,25 +10,32 @@ html, body {
 }
 
 #frame > div {
-    width: 360px;
-    padding: 20px;
-}
-
-#datetime {
-    text-align: center;
+    width: 380px;
+    padding: 10px;
     border-bottom: 1px solid black;
 }
 
-#datetime #time {
-    font-size: 80px;
-    margin: 40px 0;
+.segment-head {
+    text-align: center;
+    margin: 10px 0;
 }
 
+/* date */
+#datetime {
+    text-align: center;
+}
+
+#datetime #time {
+    font-size: 60px;
+    margin: 10px 0;
+}
+
+/* weather */
 #weather .weather-icon {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     float: left;
-    margin: 0 70px;
+    margin: 0 65px;
 }
 
 #weather .temperature {
@@ -36,10 +44,6 @@ html, body {
 
 #weather .unit {
     vertical-align: top;
-}
-
-#weather .weather-desc {
-    text-align: center;
 }
 
 .weather-icon.icon-01d { background-image: url('img/weather-icons/sunny-day.svg'); }
@@ -53,3 +57,38 @@ html, body {
 .weather-icon.icon-11d, .weather-icon.icon-11n { background-image: url('img/weather-icons/lighting.svg'); }
 .weather-icon.icon-13d, .weather-icon.icon-13n { background-image: url('img/weather-icons/snow-cloud.svg'); }
 .weather-icon.icon-50d, .weather-icon.icon-50n { background-image: url('img/weather-icons/mist.svg'); }
+
+/* traffic */
+div#traffic {
+    border-bottom: 0;
+}
+
+#traffic table {
+    width: 340px;
+    margin: 0 20px;
+}
+
+#traffic td.mins {
+    font-size: 40px;
+}
+
+#traffic td.jam-warner div {
+    width: 20px;
+    height: 20px;
+    background: black;
+    margin: 5px;
+    float: right;
+}
+
+#traffic td.jam-warner div:first-child {
+    -webkit-animation: blink 2s step-start 0s infinite;
+}
+#traffic td.jam-warner div:last-child {
+    -webkit-animation: blink 2s step-start 0s infinite reverse;
+}
+
+@-webkit-keyframes blink {
+    50% {
+        opacity: 0.0;
+    }
+}
