@@ -1,5 +1,5 @@
 <?php
-error_reporting( E_ALL );
+error_reporting( 0 );
 require 'config.php';
 
 // date
@@ -14,7 +14,7 @@ $weatherData = json_decode(file_get_contents($url));
 //traffic
 foreach ($routes as $i => $route) {
     $url = 'https://maps.googleapis.com/maps/api/directions/json?origin=' . urlencode($route['from']) . '&destination='
-        . urlencode($route['to']) . '&waypoints=via:' . urlencode($route['via']) . '&language=de&key=' . $apiKeys['google'];
+        . urlencode($route['to']) . '&waypoints=via:' . urlencode($route['via']) . '&language=de&departure_time=now&key=' . $apiKeys['google'];
     $routeDatas[$i] = json_decode(file_get_contents($url));
 }
 

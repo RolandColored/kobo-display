@@ -25,7 +25,7 @@
         <table>
             <?php
             foreach ($routeDatas as $key => $routeData) {
-                $durationSec = $routeData->{'routes'}[0]->{'legs'}[0]->{'duration'}->{'value'};
+                $durationSec = $routeData->{'routes'}[0]->{'legs'}[0]->{'duration_in_traffic'}->{'value'};
                 $jamClass = $durationSec > $routes[$key]['jamThreshold'] ? 'jam-warner' : '';
                 echo '<tr><td>'. $routes[$key]['description'] .'</td>';
                 echo '<td class="mins">'. round($durationSec / 60) .'</td>';
@@ -39,7 +39,7 @@
 
 
 <script type="text/javascript">
-    setTimeout("location.reload(true);", 1 * 60 * 1000);
+    setTimeout("location.reload(true);", 15 * 60 * 1000);
 
     function checkTime(i) {
         if (i < 10) {
