@@ -4,7 +4,22 @@ require 'config.php';
 
 // date
 setlocale(LC_TIME, 'de_DE.utf8');
-$dateFormatted = strftime('%A, %d. %B %Y', time());
+$dateFormatted = strftime('%a, %d.%m.%Y', time());
+
+// washing
+$washingFile = 'washing_timeout.txt';
+if (isset($_GET['start-wash'])) {
+    file_put_contents($washingFile, time() + $washingDurationMinutes[$_GET['start-wash']] * 60);
+    clearPath();
+}
+if (isset($_GET['stop-wash'])) {
+    file_put_contents($washingFile, 0);
+    clearPath();
+}
+$washingTimeout = file_get_contents($washingFile);
+if ($washingTimeout != 0) {
+    $washingReadyFormatted = date("H:i", $washingTimeout);
+}
 
 // weather
 $url = 'http://api.openweathermap.org/data/2.5/weather?q='. urlencode($weatherLocation) .'&units=metric&lang=de&appid='
@@ -18,3 +33,8 @@ foreach ($routes as $i => $route) {
     $routeDatas[$i] = json_decode(file_get_contents($url));
 }
 
+
+function clearPath() {
+    header("Location: ".$_SERVER['SCRIPT_NAME']);
+    die();
+}

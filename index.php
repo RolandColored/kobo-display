@@ -9,10 +9,21 @@
 <body>
 
 <div id="frame">
-    <div id="datetime">
+    <div id="datetime" class="half-width">
         <p class="segment-head"><?=$dateFormatted?></p>
         <p id="time"></p>
     </div>
+
+    <div id="washing" class="half-width">
+        <p class="segment-head">Waschen</p>
+        <?php if (isset($washingReadyFormatted)): ?>
+            <a <?php if($washingTimeout < time()) echo 'class="washing-ready"'; ?> href="?stop-wash"><?=$washingReadyFormatted?></a>
+        <?php else: ?>
+            <a href="?start-wash=40">40°</a>
+            <a href="?start-wash=60">60°</a>
+        <?php endif; ?>
+    </div>
+    <p style="clear: both"></p>
 
     <div id="weather">
         <p class="segment-head"><?=$weatherData->{'weather'}[0]->{'description'}?></p>
@@ -24,14 +35,14 @@
         <p class="segment-head">Verkehrslage</p>
         <table>
             <?php
-            foreach ($routeDatas as $key => $routeData) {
+            foreach ($routeDatas as $key => $routeData):
                 $durationSec = $routeData->{'routes'}[0]->{'legs'}[0]->{'duration_in_traffic'}->{'value'};
                 $jamClass = $durationSec > $routes[$key]['jamThreshold'] ? 'jam-warner' : '';
                 echo '<tr><td>'. $routes[$key]['description'] .'</td>';
                 echo '<td class="mins">'. round($durationSec / 60) .'</td>';
                 echo '<td>min</td>';
                 echo '<td class="'. $jamClass .'"><div></div><div></div></td></tr>';
-            }
+            endforeach;
             ?>
         </table>
     </div>
@@ -39,7 +50,7 @@
 
 
 <script type="text/javascript">
-    setTimeout("location.reload(true);", 15 * 60 * 1000);
+    var lastRefresh = new Date();
 
     function checkTime(i) {
         if (i < 10) {
@@ -49,15 +60,19 @@
     }
 
     function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
+        var now = new Date();
+        var h = now.getHours();
+        var m = now.getMinutes();
         // add a zero in front of numbers<10
         m = checkTime(m);
         document.getElementById('time').innerHTML = h + ":" + m;
         t = setTimeout(function () {
             startTime()
         }, 500);
+
+        if ((lastRefresh.getTime() + <?=$$refreshMinutes?> + 60 * 1000) < now) {
+            location.reload(true);
+        }
     }
     startTime();
 </script>

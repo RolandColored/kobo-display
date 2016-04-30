@@ -2,17 +2,29 @@
 html, body {
 	margin: 0;
     font-size: 20px;
+    background: gray;
+}
+
+div {
+    -webkit-box-sizing: border-box;
 }
 
 #frame {
     width: 400px;
     height: 514px;
+    background: white;
 }
 
 #frame > div {
-    width: 380px;
+    width: 100%;
     padding: 10px;
     border-bottom: 1px solid black;
+}
+
+#frame > div.half-width {
+    width: 50%;
+    height: 150px;
+    float: left;
 }
 
 .segment-head {
@@ -23,6 +35,7 @@ html, body {
 /* date */
 #datetime {
     text-align: center;
+    border-right: 1px solid black;
 }
 
 #datetime #time {
@@ -64,8 +77,7 @@ div#traffic {
 }
 
 #traffic table {
-    width: 340px;
-    margin: 0 20px;
+    width: 100%;
 }
 
 #traffic td.mins {
@@ -90,5 +102,32 @@ div#traffic {
 @-webkit-keyframes blink {
     50% {
         opacity: 0.0;
+    }
+}
+
+/* washing */
+#washing {
+    text-align: center;
+}
+
+#washing a {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid grey;
+    -webkit-border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 30px;
+}
+
+#washing a.washing-ready {
+    -webkit-animation: flash 2s step-start 0s infinite;
+}
+
+@-webkit-keyframes flash {
+    50% {
+        background: black;
+        color: white;
     }
 }
