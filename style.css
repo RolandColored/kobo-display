@@ -11,33 +11,35 @@ div {
 
 #frame {
     width: 400px;
-    height: 514px;
+    height: 515px;
     background: white;
 }
 
-#frame > div {
+#frame > table {
     width: 100%;
+    height: 100%;
+    border: 0;
+    border-collapse: collapse;
+}
+
+#frame > table > tbody > tr > td {
+    width: 50%;
     padding: 10px;
     border-bottom: 1px solid black;
-}
-
-#frame > div.half-width {
-    width: 50%;
-    height: 150px;
-    float: left;
-}
-
-.segment-head {
     text-align: center;
-    margin: 10px 0;
+    vertical-align: top;
 }
 
-/* date */
-#datetime {
-    text-align: center;
+#frame > table > tbody > tr > td:first-child {
     border-right: 1px solid black;
 }
 
+p {
+    margin: 10px 0;
+}
+
+
+/* date */
 #datetime #time {
     font-size: 60px;
     margin: 10px 0;
@@ -45,34 +47,29 @@ div {
 
 /* weather */
 #weather .weather-icon {
-    width: 100px;
-    height: 100px;
     float: left;
-    margin: 0 65px;
+    margin-left: 20px;
 }
 
 #weather .temperature {
-    font-size: 80px;
+    font-size: 30px;
 }
 
 #weather .unit {
     vertical-align: top;
 }
 
-.weather-icon.icon-01d { background-image: url('img/weather-icons/sunny-day.svg'); }
-.weather-icon.icon-01n { background-image: url('img/weather-icons/night.svg'); }
-.weather-icon.icon-02d { background-image: url('img/weather-icons/partialy-cloudy.svg'); }
-.weather-icon.icon-03d { background-image: url('img/weather-icons/cloudy-day.svg'); }
-.weather-icon.icon-02n, .weather-icon.icon-03n { background-image: url('img/weather-icons/dark-night.svg'); }
-.weather-icon.icon-04d, .weather-icon.icon-04n { background-image: url('img/weather-icons/overcast-day.svg'); }
-.weather-icon.icon-09d, .weather-icon.icon-09n { background-image: url('img/weather-icons/drizzle.svg'); }
-.weather-icon.icon-10d, .weather-icon.icon-10n { background-image: url('img/weather-icons/rainy-day.svg'); }
-.weather-icon.icon-11d, .weather-icon.icon-11n { background-image: url('img/weather-icons/lighting.svg'); }
-.weather-icon.icon-13d, .weather-icon.icon-13n { background-image: url('img/weather-icons/snow-cloud.svg'); }
-.weather-icon.icon-50d, .weather-icon.icon-50n { background-image: url('img/weather-icons/mist.svg'); }
+#weather .precip {
+    clear: both;
+    font-size: 15px;
+}
+#weather .precip span {
+    font-size: 120%;
+}
+
 
 /* traffic */
-div#traffic {
+#traffic {
     border-bottom: 0;
 }
 
@@ -80,8 +77,12 @@ div#traffic {
     width: 100%;
 }
 
+#traffic td {
+    font-size: 15px;
+}
+
 #traffic td.mins {
-    font-size: 40px;
+    font-size: 120%;
 }
 
 #traffic td.jam-warner div {
@@ -105,11 +106,8 @@ div#traffic {
     }
 }
 
-/* washing */
-#washing {
-    text-align: center;
-}
 
+/* washing */
 #washing a {
     color: black;
     text-decoration: none;

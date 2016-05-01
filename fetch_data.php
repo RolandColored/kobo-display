@@ -22,8 +22,7 @@ if ($washingTimeout != 0) {
 }
 
 // weather
-$url = 'http://api.openweathermap.org/data/2.5/weather?q='. urlencode($weatherLocation) .'&units=metric&lang=de&appid='
-    . $apiKeys['openweathermap'];
+$url = 'http://api.wunderground.com/api/' . $apiKeys['wunderground'] .'/conditions/lang:DL/q/CA/' . urlencode($weatherLocation) . '.json';
 $weatherData = json_decode(file_get_contents($url));
 
 //traffic
