@@ -70,7 +70,7 @@
             startTime()
         }, 500);
 
-        if ((lastRefresh.getTime() + <?=$$refreshMinutes?> + 60 * 1000) < now) {
+        if ((lastRefresh.getTime() + <?=$refreshMinutes?> * 60 * 1000) < now.getTime()) {
             location.reload(true);
         }
     }
