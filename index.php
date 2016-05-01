@@ -89,6 +89,7 @@
         }, 500);
 
         if ((lastRefresh.getTime() + <?=$refreshMinutes?> * 60 * 1000) < now.getTime()) {
+            lastRefresh = new Date();
             location.reload(true);
         }
     }
