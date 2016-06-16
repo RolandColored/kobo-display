@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 $refreshMinutes = 15;
 
 $washingDurationMinutes = array(

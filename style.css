@@ -34,6 +34,10 @@ div {
     border-right: 1px solid black;
 }
 
+#frame > table > tbody > tr > td:last-child {
+    border-right: 0 !important;
+}
+
 p {
     margin: 10px 0;
 }
@@ -41,7 +45,7 @@ p {
 
 /* date */
 #datetime #time {
-    font-size: 60px;
+    font-size: 80px;
     margin: 10px 0;
 }
 
