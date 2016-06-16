@@ -20,12 +20,31 @@
         
         <tr>
             <td id="weather" colspan="2">
-                <p class="segment-head"><?=$weatherData->{'current_observation'}->{'weather'}?></p>
-                <p>
-                    <img class="weather-icon" src="http://icons.wxug.com/i/c/i/<?=$weatherData->{'current_observation'}->{'icon'}?>.gif" />
-                    <span class="temperature"><?=intval($weatherData->{'current_observation'}->{'temp_c'})?></span> <span class="unit">°C</span>
-                </p>
-                <p class="precip">Regen heute: <span><?=$weatherData->{'current_observation'}->{'precip_today_metric'}?></span> mm</p>
+                <div class="current-weather">
+                    <p class="segment-head"><?=$currentWeather->{'current_observation'}->{'weather'}?></p>
+                    <p>
+                        <img class="weather-icon" src="http://icons.wxug.com/i/c/i/<?=$currentWeather->{'current_observation'}->{'icon'}?>.gif" />
+                        <span class="temperature"><?=intval($currentWeather->{'current_observation'}->{'temp_c'})?></span> <span class="unit">°C</span><br /><br />
+                        <span class="humidity-label">Luftfeuchtigkeit:</span> <span class="humidity-value"><?=$currentWeather->{'current_observation'}->{'relative_humidity'}?></span>
+                    </p>
+                </div>
+                <?php
+                $i = 1;
+                foreach ($forecastWeather->{'hourly_forecast'} as $forecast):
+                    if ($i % 3 == 0):
+                ?>
+                    <p class="forecast">
+                        <?=$forecast->{'FCTTIME'}->{'hour'}?> Uhr
+                        <img class="weather-icon" style="width: 30px;" src="http://icons.wxug.com/i/c/i/<?=$forecast->{'icon'}?>.gif" />
+                    </p>
+                <?php
+                    endif;
+                    $i++;
+                    if ($i > 12):
+                        break;
+                    endif;
+                endforeach;
+                ?>
             </td>
         </tr>
     

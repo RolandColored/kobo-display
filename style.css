@@ -56,19 +56,20 @@ p {
 }
 
 #weather .temperature {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 #weather .unit {
     vertical-align: top;
 }
 
-#weather .precip {
-    clear: both;
-    font-size: 15px;
+#weather .current-weather {
+    float: left;
+    width: 200px;
 }
-#weather .precip span {
-    font-size: 120%;
+
+#weather .humidity-label {
+    font-size: 15px;
 }
 
 

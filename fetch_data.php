@@ -7,7 +7,11 @@ $dateFormatted = strftime('%A, %d. %B %Y', time());
 
 // weather
 $url = 'http://api.wunderground.com/api/' . $apiKeys['wunderground'] .'/conditions/lang:DL/q/CA/' . urlencode($weatherLocation) . '.json';
-$weatherData = json_decode(file_get_contents($url));
+$currentWeather = json_decode(file_get_contents($url));
+
+$url = 'http://api.wunderground.com/api/' . $apiKeys['wunderground'] .'/hourly/lang:DL/q/CA/' . urlencode($weatherLocation) . '.json';
+$forecastWeather = json_decode(file_get_contents($url));
+
 
 //traffic
 foreach ($routes as $i => $route) {
