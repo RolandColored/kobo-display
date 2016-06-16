@@ -16,10 +16,9 @@ function startTime(refreshMinutes) {
     m = padWithZeros(m);
     document.getElementById('time').innerHTML = h + ":" + m;
     t = setTimeout(function () {
-        startTime()
-    }, 500);
-
-    if ((lastRefresh.getTime() + refreshMinutes * 60 * 1000) < now.getTime()) {
+        startTime(refreshMinutes)
+    }, 2000);
+    if ((lastRefresh.getTime() + refreshMinutes * 1000) < now.getTime()) {
         lastRefresh = new Date();
         location.reload(true);
     }
