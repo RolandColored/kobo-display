@@ -34,19 +34,21 @@ $.get('washing.php', function(data) {
 function activateWashingControls() {
     var washingControl = $('#washing-control');
 
-    washingControl.find('a[wash-temp]').click(function (e) {
+    washingControl.find('a.washing-start').click(function (e) {
         $('#washing-control').html("...");
-        $.post('washing.php', {'start-wash': $(e.target).attr('wash-temp')}, function(data) {
+        $.post('washing.php', {'start-wash': $(e.target).attr('href')}, function(data) {
             $('#washing-control').html(data);
             activateWashingControls();
         });
+        return false;
     });
 
-    washingControl.find('a[stop-wash]').click(function () {
+    washingControl.find('a.washing-stop').click(function () {
         $('#washing-control').html("...");
         $.post('washing.php', {'stop-wash': true}, function(data) {
             $('#washing-control').html(data);
             activateWashingControls();
         });
+        return false;
     });
 }

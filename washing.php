@@ -1,6 +1,8 @@
 <?php
 require 'config.php';
 
+file_put_contents("log.txt", print_r($_SERVER, true).print_r($_REQUEST, true));
+
 // persist
 $washingFile = 'washing_timeout.txt';
 if (isset($_POST['start-wash'])) {
@@ -20,8 +22,8 @@ if ($washingTimeout != 0) {
 ?>
 
 <?php if (isset($washingReadyFormatted)): ?>
-    <a stop-wash <?php if($washingTimeout < time()) echo 'class="washing-ready"'; ?> href="#"><?=$washingReadyFormatted?></a>
+    <a class="washing-stop <?php if($washingTimeout < time()) echo 'washing-ready'; ?>" href="#"><?=$washingReadyFormatted?></a>
 <?php else: ?>
-    <a wash-temp="40" href="#">40°</a>
-    <a wash-temp="60" href="#">60°</a>
+    <a class="washing-start" href="40">40°</a>
+    <a class="washing-start" href="60">60°</a>
 <?php endif; ?>
