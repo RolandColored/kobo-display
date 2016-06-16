@@ -1,8 +1,6 @@
 <?php
 require 'config.php';
 
-file_put_contents("log.txt", print_r($_SERVER, true).print_r($_REQUEST, true));
-
 // persist
 $washingFile = 'washing_timeout.txt';
 if (isset($_POST['start-wash'])) {
